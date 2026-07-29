@@ -1,0 +1,16 @@
+# Secrets - NEVER COMMIT
+secret.txt
+*.key
+*.token
+*.env
+config.ini
+
+# Python cache
+__pycache__/
+*.pyc
+venv/
+*.log
+
+# OS & Termux
+.DS_Store
+*.apk
