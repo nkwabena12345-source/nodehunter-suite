@@ -55,6 +55,23 @@ def fast_scan(target, ports):
     q.join()
     return results
 
+
+def subdomain_finder(domain):
+    wordlist = ["www","mail","ftp","admin","blog","dev","test","api","vpn","shop","secure","portal","beta","demo","app","m"]
+    print(f"\n🚀 Scanning {domain}...")
+    found=[]
+    for sub in wordlist:
+        full = f"{sub}.{domain}"
+        try:
+            ip = socket.gethostbyname(full)
+            print(f"✅ FOUND: {full} -> {ip}")
+            found.append(full)
+        except:
+            print(f"❌ {full}")
+    print(f"\n🎯 Found {len(found)} subdomains")
+    return found
+
+
 # --- MAIN SUITE ---
 print("="*50)
 print(" NODEHUNTER SECURITY SUITE v10.0 - FINAL BOSS")
@@ -66,7 +83,8 @@ while True:
     print("3. Decrypt file")
     print("4. Port scan")
     print("5. Full security audit + report")
-    print("6. Exit")
+    print("6. 🔍 Subdomain Finder [NEW]")
+    print("7. Exit")
     c=input("Choose: ")
 
     if c=="1":
@@ -94,4 +112,7 @@ while True:
                 f.write(f"- {port}: {banner}\n")
         print(f"Found {len(res)} open ports. Report saved to FINAL_REPORT.txt")
         print("AUDIT COMPLETE - YOU ARE A CYBER ENGINEER!")
-    elif c=="6": break
+    elif c=="6":
+        d=input("Domain (e.g., google.com): ")
+        subdomain_finder(d)
+    elif c=="7": break
